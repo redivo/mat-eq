@@ -1,4 +1,4 @@
 mat-eq
 ======
 
-Sound Equalizer
+Sound Equalizer developed in Matlab
