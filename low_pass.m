@@ -11,5 +11,8 @@ ret = filtfilt(lp_filt, 1, signal);
 if show_freq_graph
     figure(1);
     hold on;
-    FREQZ(lp_filt*gain, 1, 14000, fa);
+    freqz(lp_filt*gain, 1, 14000, fa);
+    ax = findall(gcf, 'Type', 'axes');
+    set(ax, 'XScale', 'log');
+    set(ax, 'XLim', [0 25000]);
 end;

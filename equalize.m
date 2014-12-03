@@ -17,29 +17,17 @@ band_pass6 = 6000;
 band_pass7 = 12000;
 hp_pass = 14000;
 
-order1 = 1100;
-order2 = 1350;
-order3 = 1050;
-order4 = 800;
-order5 = 380;
-order6 = 300;
-order7 = 300;
-order8 = 300;
-order9 = 300;
-order10 = 300;
 
-if filter_order > 0
-    order1 = filter_order;
-    order2 = filter_order;
-    order3 = filter_order;
-    order4 = filter_order;
-    order5 = filter_order;
-    order6 = filter_order;
-    order7 = filter_order;
-    order8 = filter_order;
-    order9 = filter_order;
-    order10 = filter_order;
-end
+order1 = filter_order;
+order2 = filter_order;
+order3 = filter_order;
+order4 = filter_order;
+order5 = filter_order;
+order6 = filter_order;
+order7 = filter_order;
+order8 = filter_order;
+order9 = filter_order;
+order10 = filter_order;
 
 % Low Pass filtring
 sound_lp = low_pass(lp_cut, order1, original_sound, FA, show_freq_graph, gain_lp) * gain_lp;
@@ -72,3 +60,13 @@ sound_bp8 = band_pass(band_pass7, hp_pass, order9, original_sound, FA, show_freq
 sound_hp = high_pass(hp_pass, order10, original_sound, FA, show_freq_graph, gain_hp) * gain_hp;
 
 ret = (sound_lp + sound_bp1 + sound_bp2 + sound_bp3 + sound_bp4 + sound_bp5 + sound_bp6  + sound_bp7  + sound_bp8 + sound_hp) * gain;
+
+if (show_freq_graph)
+    figure(2)
+    plot_spectre(original_sound, 44100, 'Original Sound');
+    figure(3)
+    plot_spectre(ret, 44100, 'Equalized Sound');
+end
+
+
+
